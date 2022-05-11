@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="/" />
+    <title>MAERSK assignment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+   
+        .test-align-center {
+            text-align: center;
+        }
+        @media screen and (min-width: 375px) {
+
+            .sectionDiv {
+                width: 100%;
+                display: inline-block;
+            }
+
+            .sectionDiv>.numberDiv {
+                width: 70%;
+                display: inline-block;
+            }
+
+            .sectionDiv>.buttonDivDesktop {
+                width: 29%;
+                display: inline-block;
+                text-align: center;
+            }
+
+            .sectionDiv>.buttonDivMobile {
+                display: none;
+            }
+
+            .flex-container {
+                display: flex;
+                flex-wrap: wrap;
+                background-color: DodgerBlue;
+            }
+
+            .flex-container>div {
+                background-color: red;
+                flex-grow: 1;
+                width: 33%;
+                height: 100px;
+                font-size: 50px;
+                text-align: center;
+                color: white;
+
+            }
+
+            .buttonDivDesktop>button {
+                width: 100px;
+                height: 50px;
+                background-color: deepskyblue;
+                color: white;
+            }
+
+        }
+
+        @media screen and (max-width: 374px) {
+            .sectionDiv {
+                width: 100%;
+                display: inline-block;
+            }
+
+            .sectionDiv>.numberDiv {
+                width: 100%;
+                display: inline-block;
+            }
+
+            .sectionDiv>.buttonDivMobile {
+                width: 100%;
+                display: inline-block;
+                text-align: center;
+                padding-bottom: 30px;
+            }
+
+            .sectionDiv>.buttonDivDesktop {
+                display: none;
+            }
+
+            .sectionDiv {
+                width: 100%;
+                display: inline-block;
+            }
+
+            .flex-container {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .flex-container>div {
+                flex-grow: 1;
+                width: 100%;
+                height: 100px;
+                font-size: 50px;
+                text-align: center;
+                border-left: 4px solid red;
+                background-color:gainsboro;
+                margin-bottom: 5px;
+
+            }
+
+            .buttonDivMobile>button {
+                width: 100px;
+                height: 50px;
+                background-color: deepskyblue;
+                color: white;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <h3 class="test-align-center">Shuffle and Sort</h3>
+    <div class="sectionDiv">
+        <div class="buttonDivMobile">
+            <button onclick="shuffleNumbersMobile(list,colorlist)">Shuffle</button>
+            <button onclick="sortNumbersMobile(list,colorlist)">Sort</button>
+        </div>
+        <div class="numberDiv">
+            <div class="flex-container" id="setDiv">
+                <!-- <div>1</div>
+                <div>2</div>
+                <div>3</div>
+                <div>4</div>
+                <div>5</div>
+                <div>6</div>
+                <div>6</div>
+                <div>7</div>
+                <div>8</div> -->
+            </div>
+        </div>
+        <div class="buttonDivDesktop">
+            <button onclick="shuffleNumbers(list,colorlist)">Shuffle</button>
+            <button onclick="sortNumbers(list,colorlist)">Sort</button>
+        </div>
+    </div>
+
+    <h4  class="test-align-center">Shuffle and Sort by Onkar Natekar</h4>
+
+    <script>
+        var list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        var colorlist = ["#000000", "#2B8EAD", "#333333", "#6F98A8", "#FFFFFF", "#BFBFBF", "#EFEFEF", "#2F454E", "#72C3DC"]
+        
+
+        function myFunction(x) {
+  if (x.matches) { 
+    createDivMobile(list, colorlist)
+  } else {
+    createDiv(list,colorlist);
+  }
+}
+
+var x = window.matchMedia("(max-width: 374px)")
+myFunction(x);
+
+
+        function createDiv(list, colorlist) {
+            let numberlist  = list;
+            let colornolist = colorlist;
+            for (let i = 0; i < numberlist.length; i++) {
+                const div = document.createElement("div");
+                div.innerHTML = numberlist[i];
+                div.style.background = colornolist[i];
+                document.getElementById("setDiv").appendChild(div);
+            }
+        }
+
+        function createDivMobile(list, colorlist) {
+            let numberlist  = list;
+            let colornolist = colorlist;
+            for (let i = 0; i < numberlist.length; i++) {
+                const div = document.createElement("div");
+                div.innerHTML = numberlist[i];
+                div.style.borderLeft = "thick solid " + colornolist[i];
+                document.getElementById("setDiv").appendChild(div);
+            }
+        }
+
+        
+        function shuffleNumbers(list,colorlist) {
+            document.getElementById("setDiv").innerHTML = "";
+
+            let list2 = list.sort(() => Math.random() - 0.5)
+            let colorlist2  = colorlist.sort(() => Math.random() - 0.5)
+            createDiv(list2,colorlist2);
+        }
+
+        function sortNumbers() {
+            document.getElementById("setDiv").innerHTML = "";
+            let list3 = list.sort();
+            let colorlist3 = colorlist.sort();
+            createDiv(list3,colorlist3);
+        }
+
+        function shuffleNumbersMobile(list,colorlist) {
+            document.getElementById("setDiv").innerHTML = "";
+
+            let list4 = list.sort(() => Math.random() - 0.5)
+            let colorlist4  = colorlist.sort(() => Math.random() - 0.5)
+            createDivMobile(list4,colorlist4);
+        }
+
+        function sortNumbersMobile() {
+            document.getElementById("setDiv").innerHTML = "";
+            let list5 = list.sort();
+            let colorlist5 = colorlist.sort();
+            createDivMobile(list5,colorlist5);
+        }
+    </script>
+</body>
+
+</html>
